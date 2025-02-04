@@ -157,7 +157,7 @@ Hata 1:
 
 [TAKİP LİSTEM] Tümünü Seç checkboxı manuel eklemelerde seçilmiyor.
 
-Descriptiyon: Takip Listem'demanuel olarak ürünlerin hepsi seçildiğinde "Tümünü Seç" butonunun adı "Tümünü Kaldır" olmalıdır
+Description: Takip Listem'demanuel olarak ürünlerin hepsi seçildiğinde "Tümünü Seç" butonunun adı "Tümünü Kaldır" olmalıdır
 Bağlantı: https://www.akakce.com/akakcem/takip-listem/#m-n-std
 
 Tarayıcı/İşletim Sistemi: Chrome11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz 2.30 GHz
@@ -191,7 +191,7 @@ Hata 2:
 
 [ADRES] Adres kaydedilirken çıkan başarı mesajı pop-upında "TAMAM" butonu ve "Adresinz başarıyla kaydedildi." ibaresi ayrı ayrı görünmelidir.
 
-Descriptiyon: Adres kaydedilirken çıkan başarı mesajı pop-upında "TAMAM" butonu ve "Adresinz başarıyla kaydedildi." ibaresi ayrı ayrı görünmelidir.
+Description: Adres kaydedilirken çıkan başarı mesajı pop-upında "TAMAM" butonu ve "Adresinz başarıyla kaydedildi." ibaresi ayrı ayrı görünmelidir.
 
 Bağlantı: https://www.akakce.com/akakcem/adreslerim/
 
@@ -211,8 +211,30 @@ Yeniden üretme adımları:
 
 6.Başarı mesajı içeren bir pop-up açılır.
 
+Hata 3:
+[ADRES] Şifre değiştirilirken çıkan hata bilgilendirme  mesajı pop-upında "TAMAM" butonu ve "Şifreniz en az 8 karakter uzunluğunda olmalı. İçerisinde büyük harf, küçük harf ve rakam bulunmalı." ibaresi ayrı ayrı görünmelidir.
 
-Gerçek Sonuç:"Tamam" butonu ile "Adresiniz başarıyla kaydedildi" bilgilerinin karışık bir şekilde olduğu görülür.
+Description:Şifre değiştirilirken çıkan hata bilgilendirme  mesajı pop-upında "TAMAM" butonu ve "Şifreniz en az 8 karakter uzunluğunda olmalı. İçerisinde büyük harf, küçük harf ve rakam bulunmalı." ibaresi ayrı ayrı görünmelidir
+Bağlantı: https://www.akakce.com/akakcem/adreslerim/
+
+Tarayıcı/İşletim Sistemi: Chrome11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz 2.30 GHz
+
+Yeniden üretme adımları:
+
+1.Anasayfa'dan Person ikonu ve ardından Hesabım adımları takip edilir.
+
+2.Şifremi Güncelle seçeneğine tıklanır.
+
+3.Şifre Güncelleme alanın açıldığı görülür.
+
+4.Şifre kurallarına aykırı datalar girilir
+
+5.Kaydet butonuna basılır
+
+6.Hata mesajı içeren bir pop-up açılır.
+
+
+Gerçek Sonuç:"Tamam" butonu ile "Şifreniz en az 8 karakter uzunluğunda olmalı. İçerisinde büyük harf, küçük harf ve rakam bulunmalı" bilgilerinin karışık bir şekilde olduğu görülür.
 Beklenen Sonuç: Düzgün görünümde olmalıdır.
 
 Giriş Verileri: test@test.com

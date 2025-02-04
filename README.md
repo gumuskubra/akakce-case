@@ -1,5 +1,5 @@
-# Akakce Test Documentation
-1.Manuel Test Case Çalışması
+**# Akakce Test Documentation**
+# ****1.Manuel Test Case Çalışması****
 
 Test Case TC-001: Sayfanın Yüklenmesi
 Amaç:
@@ -146,3 +146,13 @@ Kullanıcı, giriş yapması gerektiğine dair uyarı alır veya giriş sayfası
 Ön Koşul / Notlar:
 Yetkilendirme mekanizmaları doğru çalışmalıdır.
 
+
+
+# ****2. Test Otomasyonu – UI Çalışması****
+Akakce_12 Dosyası UI test otomasyon çalışmasını içermektedir. Konsol çıktısını ekte UI OTOMASYON-RESULT bölümünde iletmekteyim.(Read me altında) Tesler başarılı ile tamamlanmıştır.
+# ****3. Postman – API****
+Postman'de ilgili dosyadaki requestler çalıştırılmıştır ve newman ile raporlama yapılmıştır.(Bazı requestlerde son yaptığım işlemlerde başarılı sonuç dönmesine rağmen rapora 403 döndüğü bilgisi yansımıştır. Rapor'u ekte iletiyorum.)
+# ****4. Bug Raporlama – API****
+
+# ****5.API Testi için Rest Assured Test otomasyonu****
+Akakce_1 Dosyası api testi için otomasyon kodlama dosyasıdır. Target-surfire-reports altında test sonuçlarını görebilirsiniz.

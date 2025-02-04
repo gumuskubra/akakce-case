@@ -5,52 +5,105 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.interactions.Actions;
+
 import java.time.Duration;
 import java.util.List;
-import org.openqa.selenium.JavascriptExecutor;
-
 
 public class SearchPage {
     WebDriver driver;
     WebDriverWait wait;
 
-    // Constructor
+    // Constructor: WebDriver nesnesini parametre olarak alır
     public SearchPage(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Son sürüm için Duration parametresi
+        this.driver = driver;  // WebDriver'ı parametre olarak alıyoruz
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // WebDriver'ı kullanarak WebDriverWait oluşturuyoruz
     }
 
-    // Web Elements
-    private By searchBoxXPath = By.xpath("/html/body/div[1]/header/div[3]/form/span/input"); // search box
-    private By searchButtonXPath = By.xpath("/html/body/div[1]/header/div[3]/form/button"); // search button
-    public By productListXPath = By.xpath("/html/body/div[2]/ul"); // product list
-//    private By goToProductXPath = By.xpath("/html/body/div[2]/ul/li[1]/a/span/span[6]/b");
-    private By goToProductXPath = By.xpath("//span[contains(text(), 'Ürüne Git')]");
-    private By addToFavoritesXPath = By.xpath("//span[@class='ufo_v8' and contains(text(), 'Takip Et')]"); // follow button
+    // Web Elemanları
+    private By searchBox = By.xpath("/html/body/div[1]/header/div[3]/form/span/input"); // Arama kutusu
+    private By searchButton = By.xpath("/html/body/div[1]/header/div[3]/form/button"); // Arama butonu
+    public By productListXPath = By.xpath("/html/body/div[2]/ul"); // Ürün listesi
+    private By goToProductButton = By.xpath("//span[contains(text(), 'Ürüne Git')]"); // Ürüne git butonu
+    private By addToFavoritesButton = By.xpath("//span[@class='ufo_v8' and contains(text(), 'Takip Et')]"); // Favorilere ekle butonu
+    private By acceptCookiesButton = By.xpath("//div[@id='59e066d1-086d-4238-a9a7-b31ba072937c' and @data-name='kabul et']");
+    // XPath: "Takip Et" metnini içeren butonu seç
 
-    // Methods
+
+    // Çerezleri kabul etme fonksiyonu
+    public void acceptCookies() {
+        try {
+            WebElement acceptButton = wait.until(ExpectedConditions.elementToBeClickable(acceptCookiesButton));
+            acceptButton.click();
+            System.out.println("Çerez kabul butonuna tıklanmış oldu.");
+        } catch (Exception e) {
+            System.out.println("Çerez kabul butonu bulunamadı veya zaten tıklanmış olabilir: " + e.getMessage());
+        }
+    }
+
+    // Ürün arama fonksiyonu
     public void searchProduct(String productName) {
-        wait.until(ExpectedConditions.elementToBeClickable(searchBoxXPath)); // Bekleme eklenmeli
-        driver.findElement(searchBoxXPath).sendKeys(productName);
-        driver.findElement(searchButtonXPath).click();
+        wait.until(ExpectedConditions.elementToBeClickable(searchBox)); // Arama kutusunun tıklanabilir olmasını bekle
+        driver.findElement(searchBox).sendKeys(productName); // Arama kutusuna ürün ismini yaz
+        driver.findElement(searchButton).click(); // Arama butonuna tıkla
     }
 
+    // İlk ürünü seçme fonksiyonu
     public void selectFirstProduct() {
         List<WebElement> products = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(productListXPath));
         if (!products.isEmpty()) {
-            products.get(0).click(); // get(0) kullanıldı
+            products.get(0).click(); // İlk ürüne tıkla
         }
     }
-    public void goToProductPage() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(goToProductXPath));
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(goToProductXPath));
-        element.click();
-    }
 
+    // Ürün sayfasına gitme fonksiyonu
+    public void goToProductPage() {
+        String originalWindow = driver.getWindowHandle(); // Mevcut sekmeyi sakla
+
+        try {
+            WebElement goToProductBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(goToProductButton));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", goToProductBtn);
+            goToProductBtn.click();
+
+            // Yeni sekmeye geçiş
+            for (String windowHandle : driver.getWindowHandles()) {
+                if (!windowHandle.equals(originalWindow)) {
+                    driver.switchTo().window(windowHandle); // Yeni sekmeye geçiş
+                    break;
+                }
+            }
+
+            // Yeni sayfanın tamamen yüklenmesini bekle
+            wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+        } catch (Exception e) {
+            System.err.println("Ürün sayfasına gitme sırasında hata: " + e.getMessage());
+        }
+    }
 
     public void addToFavorites() {
-        wait.until(ExpectedConditions.elementToBeClickable(addToFavoritesXPath)); // Bekleme eklenmeli
-        driver.findElement(addToFavoritesXPath).click();
+        // Çerez kabul etme işlemini çağırıyoruz
+        acceptCookies();
+
+        try {
+            // Dinamik öğe varsa gizlenmesini bekle
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//efilli-layout-dynamic")));
+        } catch (Exception e) {
+            System.out.println("Dinamik öğe gizlenemedi: " + e.getMessage());
+        }
+
+        try {
+
+            Actions actions = new Actions(driver);
+            WebElement followButton = wait.until(ExpectedConditions.elementToBeClickable(addToFavoritesButton));
+
+// Çift tıklama
+            actions.moveToElement(followButton).doubleClick().perform();
+
+            System.out.println("Takip Et butonuna tıklanmış oldu.");
+        } catch (Exception e) {
+            System.out.println("Takip Et butonuna tıklanırken hata: " + e.getMessage());
+        }
     }
+
 }

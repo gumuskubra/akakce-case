@@ -153,6 +153,70 @@ Akakce_12 Dosyası UI test otomasyon çalışmasını içermektedir. Konsol çı
 # ****3. Postman – API****
 Postman'de ilgili dosyadaki requestler çalıştırılmıştır ve newman ile raporlama yapılmıştır.(Bazı requestlerde son yaptığım işlemlerde başarılı sonuç dönmesine rağmen rapora 403 döndüğü bilgisi yansımıştır. Rapor'u ekte iletiyorum.)
 # ****4. Bug Raporlama – API****
+Hata 1:
 
+[TAKİP LİSTEM] Tümünü Seç checkboxı manuel eklemelerde seçilmiyor.
+
+Descriptiyon: Takip Listem'demanuel olarak ürünlerin hepsi seçildiğinde "Tümünü Seç" butonunun adı "Tümünü Kaldır" olmalıdır
+Bağlantı: https://www.akakce.com/akakcem/takip-listem/#m-n-std
+
+Tarayıcı/İşletim Sistemi: Chrome11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz 2.30 GHz
+
+Yeniden üretme adımları:
+
+1. https://www.akakce.com/akakcem/takip-listem/ gidilir.
+
+2. Düzenle butonuna basılır
+
+3.Tüm Ürünler pop-upının açıldığı görülür
+
+4. Tümünü Seç'e tıklanır.
+
+5.Ürünlerin hepsinin seçildiği ve butonun adının "Tümünü Kaldır" olduğu görülür.
+
+6."Tümünü Kaldır" a tıklanır.
+
+7.Manuel olarak bütün ürünler seçilir.
+
+
+Gerçek sonuç:"Tümünü Seç" butonunun adı "Tümünü Kaldır" olmaz.
+
+Beklenen Sonuç:"Tümünü Seç" butonunun adı "Tümünü Kaldır" olmalıdır
+
+Giriş Verileri: test@test.com (Takip Listesi'nde ürünler olmalıdır.)
+Hata Önceliği: Minör
+Hata Önemi:Minör
+
+Hata 2:
+
+[ADRES] Adres kaydedilirken çıkan başarı mesajı pop-upında "TAMAM" butonu ve "Adresinz başarıyla kaydedildi." ibaresi ayrı ayrı görünmelidir.
+
+Descriptiyon: Adres kaydedilirken çıkan başarı mesajı pop-upında "TAMAM" butonu ve "Adresinz başarıyla kaydedildi." ibaresi ayrı ayrı görünmelidir.
+
+Bağlantı: https://www.akakce.com/akakcem/adreslerim/
+
+Tarayıcı/İşletim Sistemi: Chrome11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz 2.30 GHz
+
+Yeniden üretme adımları:
+
+1.Anasayfa'dan Person ikonu ve ardından Hesabım adımları takip edilir.
+
+2.Adreslerim seçeneğine tıklanır.
+
+3.Adres ekleme pop-upının açıldığı görülür.
+
+4.Gerekli alanlar doldurulur.
+
+5.Kaydet butonuna basılır
+
+6.Başarı mesajı içeren bir pop-up açılır.
+
+
+Gerçek Sonuç:"Tamam" butonu ile "Adresiniz başarıyla kaydedildi" bilgilerinin karışık bir şekilde olduğu görülür.
+Beklenen Sonuç: Düzgün görünümde olmalıdır.
+
+Giriş Verileri: test@test.com
+Hata Önceliği: Minör
+Hata Önemi:Minör
 # ****5.API Testi için Rest Assured Test otomasyonu****
 Akakce_1 Dosyası api testi için otomasyon kodlama dosyasıdır. Target-surfire-reports altında test sonuçlarını görebilirsiniz.

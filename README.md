@@ -151,7 +151,7 @@ Yetkilendirme mekanizmaları doğru çalışmalıdır.
 # ****2. Test Otomasyonu – UI Çalışması****
 Akakce_12 Dosyası UI test otomasyon çalışmasını içermektedir. Konsol çıktısını ekte UI OTOMASYON-RESULT bölümünde iletmekteyim.(Read me altında) Tesler başarılı ile tamamlanmıştır.
 # ****3. Postman – API****
-Postman'de ilgili dosyadaki requestler çalıştırılmıştır ve newman ile raporlama yapılmıştır.(Bazı requestlerde son yaptığım işlemlerde başarılı sonuç dönmesine rağmen rapora 403 döndüğü bilgisi yansımıştır. Rapor'u ekte iletiyorum.)
+Postman'de ilgili dosyadaki requestler çalıştırılmıştır ve newman ile raporlama yapılmıştır.(Bazı requestlerde son yaptığım işlemlerde başarılı sonuç dönmesine rağmen rapora 403 döndüğü bilgisi yansımıştır.Tekrar ürettiğim raporlarda da bu yanlışı düzeltemedim. Rapor'u ekte iletiyorum.)
 # ****4. Bug Raporlama – API****
 Hata 1:
 
